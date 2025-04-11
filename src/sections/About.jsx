@@ -1,32 +1,28 @@
 import { useState } from 'react';
 import Globe from 'react-globe.gl';
 import Button from '../components/Button.jsx';
+import AnimatedText from '../components/AnimatedText.jsx'; 
 
 const About = () => {
   const [hasCopied, setHasCopied] = useState('');
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
-
-    if (text === 'vishwagautam57@gmail.com') {
-      setHasCopied('email');
-    } else {
-      setHasCopied('number');
-    }
-
-    setTimeout(() => {
-      setHasCopied('');
-    }, 2000);
+    setHasCopied(text === 'vishwagautam57@gmail.com' ? 'email' : 'number');
+    setTimeout(() => setHasCopied(''), 2000);
   };
 
   return (
     <section className="c-space my-20" id="about">
+      {/* Animated About Me Heading */}
+      <AnimatedText text="About Me" />
+
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
 
-        {/* About Me */}
+        {/* About Me Content */}
         <div className="col-span-1 xl:row-span-3">
           <div className="grid-container">
-            <img src="assets/grid1.png" alt="grid-1" className="w-full sm:h-[276px] h-fit object-contain" />
+            <img src="assets/grid1.png" alt="about-me" className="w-full sm:h-[276px] h-fit object-contain" />
             <div>
               <p className="grid-headtext">Hi, I'm Kumar Gautam</p>
               <p className="grid-subtext">
@@ -39,10 +35,10 @@ const About = () => {
         {/* Tech Stack */}
         <div className="col-span-1 xl:row-span-3">
           <div className="grid-container">
-            <img src="assets/techStack.png" alt="grid-2" className="w-full sm:h-[276px] h-fit object-contain" />
+            <img src="assets/techStack.png" alt="tech-stack" className="w-full sm:h-[276px] h-fit object-contain" />
             <div>
               <p className="grid-headtext">Tech Stack</p>
-              <p className="text-sm md:text-base text-gray-400 leading-relaxed tracking-wide grid-subtext ">
+              <p className="text-sm md:text-base text-gray-400 leading-relaxed tracking-wide grid-subtext">
                 <span className='font-bold text-green-500'>MERN Stack Developer —</span> <br />
                 <span className="font-semibold text-gray-300">Frontend:</span> HTML, CSS, JavaScript, React.js, GSAP, Material UI, Framer Motion. <br />
                 <span className="font-semibold text-gray-300">Backend:</span> Node.js, Express.js, JWT Authentication. <br />
@@ -81,7 +77,7 @@ const About = () => {
         {/* Projects Passion */}
         <div className="xl:col-span-2 xl:row-span-3">
           <div className="grid-container">
-            <img src="assets/grid3.png" alt="grid-3" className="w-full sm:h-[266px] h-fit object-contain" />
+            <img src="assets/grid3.png" alt="projects" className="w-full sm:h-[266px] h-fit object-contain" />
             <div>
               <p className="grid-headtext">Projects & Passion</p>
               <p className="grid-subtext">
@@ -94,19 +90,13 @@ const About = () => {
           </div>
         </div>
 
-        {/* Contact Email & Number Copy */}
-        <div className="xl:col-span-1 xl:row-span-2 ">
-          <div className="grid-container ">
-            <img
-              src="assets/grid4.png"
-              alt="grid-4"
-              className="w-full md:h-[126px] sm:h-[276px] h-fit object-cover sm:object-top"
-            />
+        {/* Contact Me */}
+        <div className="xl:col-span-1 xl:row-span-2">
+          <div className="grid-container">
+            <img src="assets/grid4.png" alt="contact" className="w-full md:h-[126px] sm:h-[276px] h-fit object-cover sm:object-top" />
+            <div className="space-y-2 mt-4 items-start">
+              <p className="text-lg text-left text-green-500">Contact Me</p>
 
-            <div className="space-y-2 mt-4">
-              <p className="text-lg text-center text-green-500">Contact Me</p>
-
-              {/* Email Copy */}
               <div className="pt-4 copy-container" onClick={() => handleCopy('vishwagautam57@gmail.com')}>
                 <img src={hasCopied === 'email' ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />
                 <p className="lg:text-xl md:text-xl text-gray_gradient text-white font-bold">
@@ -114,7 +104,6 @@ const About = () => {
                 </p>
               </div>
 
-              {/* Number Copy */}
               <div className="pt-4 copy-container" onClick={() => handleCopy('+91 8789034892')}>
                 <img src={hasCopied === 'number' ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />
                 <p className="lg:text-xl md:text-xl text-gray_gradient text-white font-bold">

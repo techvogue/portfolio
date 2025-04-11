@@ -1,21 +1,21 @@
-import { Leva } from 'leva';
-import { Suspense, useRef, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { useMediaQuery } from 'react-responsive';
 import { PerspectiveCamera } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 import gsap from 'gsap';
+import { Leva } from 'leva';
+import { Suspense, useEffect, useRef } from 'react';
 import { AiOutlineDownload } from 'react-icons/ai';
+import { useMediaQuery } from 'react-responsive';
 
-import Cube from '../components/Cube.jsx';
-import Rings from '../components/Rings.jsx';
-import ReactLogo from '../components/ReactLogo.jsx';
 import Button from '../components/Button.jsx';
-import Target from '../components/Target.jsx';
-import CanvasLoader from '../components/Loading.jsx';
-import HeroCamera from '../components/HeroCamera.jsx';
-import { calculateSizes } from '../constants/index.js';
+import Cube from '../components/Cube.jsx';
 import { HackerRoom } from '../components/HackerRoom.jsx';
-
+import HeroCamera from '../components/HeroCamera.jsx';
+import CanvasLoader from '../components/Loading.jsx';
+import ReactLogo from '../components/ReactLogo.jsx';
+import Rings from '../components/Rings.jsx';
+import Target from '../components/Target.jsx';
+import { calculateSizes } from '../constants/index.js';
+import BlurIn from '../components/BlurIn';
 const Hero = () => {
   const isSmall = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -36,18 +36,19 @@ const Hero = () => {
       });
     }
   }, [isMobile]);
-  
+
 
   return (
     <section className="min-h-screen w-full flex flex-col relative" id="home">
       {/* Text Content */}
-      <div className="w-full mx-auto flex flex-col sm:mt-28 mt-24 c-space gap-3 z-10">
-        <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
+      <div className="w-full mx-auto flex flex-col sm:mt-24 mt-20 c-space gap-3 z-10">
+        <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans mb-4">
           Hi, I am Kumar Gautam <span className="waving-hand">👋</span>
         </p>
-        <p className="hero_tag text-gray_gradient">
+        <BlurIn>Tech Enthusiast | Full Stack Developer</BlurIn>
+        {/* <p className="hero_tag text-gray_gradient">
           Tech Enthusiast | Full Stack Developer
-        </p>
+        </p> */}
       </div>
 
       {/* 3D Canvas Section */}

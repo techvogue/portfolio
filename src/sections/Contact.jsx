@@ -1,6 +1,6 @@
 import emailjs from '@emailjs/browser';
 import { useRef, useState } from 'react';
-
+import AnimatedText from '../components/AnimatedText.jsx'; 
 import useAlert from '../hooks/useAlert.js';
 import Alert from '../components/Alert.jsx';
 
@@ -72,29 +72,28 @@ const Contact = () => {
   return (
     <section className="c-space my-20" id="contact">
       {alert.show && <Alert {...alert} />}
-
+      {/* Animated About Me Heading */}
+      <AnimatedText text="Contact Me" />
       <div className="relative min-h-screen flex items-center justify-center flex-col">
-        <img
+      <img
           src="/assets/terminal.png"
           alt="terminal-bg"
-          className="absolute inset-0 min-h-screen object-cover"
+          className="absolute inset-0 hidden md:block md:min-h-screen"
         />
 
-        <div className="pt-10 sm:pt-14 pb-10 sm:pb-16 px-5 contact-container">
+        <div className="pt-10 sm:pt-24 pb-10 sm:pb-16 px-5 contact-container">
           <h3 className="head-text text-base sm:text-xl md:text-2xl">
             Let's Connect
           </h3>
 
-          <p className="text-sm sm:text-base md:text-lg text-white-600 mt-3 leading-relaxed">
-            Have an idea, project, or just want to connect? I'm always open to
-            discussing tech, collaborations, or building something awesome
-            together.
+          <p className="text-sm sm:text-base md:text-lg text-green-500 mt-3 leading-relaxed">
+            Have an idea, project, or just want to connect? 
           </p>
 
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="mt-10 flex flex-col space-y-6 sm:space-y-7"
+            className="mt-6 flex flex-col space-y-6 sm:space-y-7"
           >
             <label className="space-y-2">
               <span className="field-label">Full Name</span>

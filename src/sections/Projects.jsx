@@ -3,7 +3,7 @@ import { useGSAP } from '@gsap/react';
 import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Center, OrbitControls } from '@react-three/drei';
-
+import AnimatedText from '../components/AnimatedText.jsx'; 
 import { myProjects } from '../constants/index.js';
 import CanvasLoader from '../components/Loading.jsx';
 import DemoComputer from '../components/DemoComputer.jsx';
@@ -30,8 +30,8 @@ const Projects = () => {
   const currentProject = myProjects[selectedProjectIndex];
 
   return (
-    <section id='projects' className="c-space my-20">
-      <p className="head-text">My Projects</p>
+    <section id='projects' className="c-space mt-20">
+       <AnimatedText text="My Project" />
 
       <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
         <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200">
