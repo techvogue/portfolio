@@ -26,14 +26,17 @@ const Hero = () => {
   const downloadButtonRef = useRef();
 
   useEffect(() => {
-    gsap.to(downloadButtonRef.current, {
-      y: -50,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut',
-      duration: .8,
-    });
-  }, []);
+    if (!isMobile) {
+      gsap.to(downloadButtonRef.current, {
+        y: -50,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+        duration: 0.8,
+      });
+    }
+  }, [isMobile]);
+  
 
   return (
     <section className="min-h-screen w-full flex flex-col relative" id="home">
