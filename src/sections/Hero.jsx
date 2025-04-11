@@ -104,7 +104,7 @@ const Hero = () => {
               containerClass="sm:w-fit w-full sm:min-w-96 pr-10"
             />
             <AiOutlineDownload
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-white text-xl"
+              className="hidden md:block absolute right-5 top-1/2 -translate-y-1/2 text-white text-xl"
             />
           </a>
         </div>
