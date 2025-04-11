@@ -3,13 +3,19 @@ import Globe from 'react-globe.gl';
 import Button from '../components/Button.jsx';
 
 const About = () => {
-  const [hasCopied, setHasCopied] = useState(false);
+  const [hasCopied, setHasCopied] = useState('');
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText('vishwagautam57@gmail.com');
-    setHasCopied(true);
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+
+    if (text === 'vishwagautam57@gmail.com') {
+      setHasCopied('email');
+    } else {
+      setHasCopied('number');
+    }
+
     setTimeout(() => {
-      setHasCopied(false);
+      setHasCopied('');
     }, 2000);
   };
 
@@ -45,8 +51,6 @@ const About = () => {
                 <span className="font-semibold text-gray-300">Tools & Deployment:</span> VS Code, Git, GitHub, Vercel, Render. <br />
                 <span className="font-semibold text-gray-300">IoT & Embedded Systems:</span> Arduino, IoT Platforms, LoRa, GSM Communication.
               </p>
-
-
             </div>
           </div>
         </div>
@@ -86,26 +90,34 @@ const About = () => {
                 Key projects include a Real-Time Crypto Tracker enabling users to monitor live cryptocurrency prices and market trends with interactive UI, a fully-featured eCommerce Platform with secure payment gateways and optimized performance, and an IoT-based Forest Fire Warning System designed using Arduino & LoRa communication for real-time environmental monitoring and early warning alerts.
                 Each project reflects my commitment to building scalable, user-centric, and performance-driven solutions.
               </p>
-
             </div>
           </div>
         </div>
 
-        {/* Contact Email */}
+        {/* Contact Email & Number Copy */}
         <div className="xl:col-span-1 xl:row-span-2 ">
           <div className="grid-container ">
-            <img src="assets/grid4.png" alt="grid-4" className="w-full md:h-[126px] sm:h-[276px] h-fit object-cover sm:object-top" />
+            <img
+              src="assets/grid4.png"
+              alt="grid-4"
+              className="w-full md:h-[126px] sm:h-[276px] h-fit object-cover sm:object-top"
+            />
+
             <div className="space-y-2 mt-4">
               <p className="text-lg text-center text-green-500">Contact Me</p>
-              <div className="pt-4 copy-container " onClick={handleCopy}>
-                <img src={hasCopied ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />
-                <p className=" lg:text-xl md:text-xl text-gray_gradient text-white font-bold ">
+
+              {/* Email Copy */}
+              <div className="pt-4 copy-container" onClick={() => handleCopy('vishwagautam57@gmail.com')}>
+                <img src={hasCopied === 'email' ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />
+                <p className="lg:text-xl md:text-xl text-gray_gradient text-white font-bold">
                   vishwagautam57@gmail.com
                 </p>
-              </div> 
-              <div className="pt-4 float-start copy-container " onClick={handleCopy}>
-                <img src={hasCopied ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />
-                <p className=" lg:text-xl md:text-xl text-gray_gradient text-white font-bold ">
+              </div>
+
+              {/* Number Copy */}
+              <div className="pt-4 copy-container" onClick={() => handleCopy('+91 8789034892')}>
+                <img src={hasCopied === 'number' ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />
+                <p className="lg:text-xl md:text-xl text-gray_gradient text-white font-bold">
                   +91 8789034892
                 </p>
               </div>

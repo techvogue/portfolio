@@ -79,7 +79,7 @@ const Hero = () => {
       </div>
 
       {/* Call to Action Buttons */}
-      <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
+      <div className="absolute bottom-16 sm:bottom-8 left-0 right-0 w-full z-10 c-space">
         <div className="flex justify-between items-center w-full flex-col sm:flex-row gap-5">
           {/* Left Button */}
           <a href="#about" className="w-fit">

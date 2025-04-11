@@ -77,12 +77,15 @@ const Contact = () => {
         <img
           src="/assets/terminal.png"
           alt="terminal-bg"
-          className="absolute inset-0 min-h-screen"
+          className="absolute inset-0 min-h-screen object-cover"
         />
 
-        <div className="md:pt-14 contact-container">
-          <h3 className="head-text">Let's Connect</h3>
-          <p className="text-base sm:text-lg md:text-xl text-white-600 mt-3">
+        <div className="pt-10 sm:pt-14 pb-10 sm:pb-16 px-5 contact-container">
+          <h3 className="head-text text-base sm:text-xl md:text-2xl">
+            Let's Connect
+          </h3>
+
+          <p className="text-sm sm:text-base md:text-lg text-white-600 mt-3 leading-relaxed">
             Have an idea, project, or just want to connect? I'm always open to
             discussing tech, collaborations, or building something awesome
             together.
@@ -91,9 +94,9 @@ const Contact = () => {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="mt-10 flex flex-col space-y-7"
+            className="mt-10 flex flex-col space-y-6 sm:space-y-7"
           >
-            <label className="space-y-3">
+            <label className="space-y-2">
               <span className="field-label">Full Name</span>
               <input
                 type="text"
@@ -106,7 +109,7 @@ const Contact = () => {
               />
             </label>
 
-            <label className="space-y-3">
+            <label className="space-y-2">
               <span className="field-label">Email address</span>
               <input
                 type="email"
@@ -119,7 +122,7 @@ const Contact = () => {
               />
             </label>
 
-            <label className="space-y-3">
+            <label className="space-y-2">
               <span className="field-label">Your message</span>
               <textarea
                 name="message"
