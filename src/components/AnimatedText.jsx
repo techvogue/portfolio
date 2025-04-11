@@ -5,7 +5,7 @@ import React, { useRef } from 'react';
 
 const AnimatedText = ({ text }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: false });
 
   return (
     <div className="flex items-center justify-center w-full gap-4 py-10">

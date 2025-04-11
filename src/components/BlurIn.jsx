@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 const BlurIn = ({ children }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: false });
 
   return (
     <motion.h2
