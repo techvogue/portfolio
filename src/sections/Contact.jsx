@@ -46,7 +46,6 @@ const Contact = () => {
             type: 'success',
           });
 
-          // Clear form data after submission
           setForm({
             name: '',
             email: '',
@@ -83,7 +82,7 @@ const Contact = () => {
 
         <div className="md:pt-14 contact-container">
           <h3 className="head-text">Let's Connect</h3>
-          <p className="text-lg text-white-600 mt-3">
+          <p className="text-base sm:text-lg md:text-xl text-white-600 mt-3">
             Have an idea, project, or just want to connect? I'm always open to
             discussing tech, collaborations, or building something awesome
             together.
