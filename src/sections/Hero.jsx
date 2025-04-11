@@ -1,0 +1,112 @@
+import { Leva } from 'leva';
+import { Suspense, useRef, useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { useMediaQuery } from 'react-responsive';
+import { PerspectiveCamera } from '@react-three/drei';
+import gsap from 'gsap';
+import { AiOutlineDownload } from 'react-icons/ai';
+
+import Cube from '../components/Cube.jsx';
+import Rings from '../components/Rings.jsx';
+import ReactLogo from '../components/ReactLogo.jsx';
+import Button from '../components/Button.jsx';
+import Target from '../components/Target.jsx';
+import CanvasLoader from '../components/Loading.jsx';
+import HeroCamera from '../components/HeroCamera.jsx';
+import { calculateSizes } from '../constants/index.js';
+import { HackerRoom } from '../components/HackerRoom.jsx';
+
+const Hero = () => {
+  const isSmall = useMediaQuery({ maxWidth: 440 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+
+  const sizes = calculateSizes(isSmall, isMobile, isTablet);
+
+  const downloadButtonRef = useRef();
+
+  useEffect(() => {
+    gsap.to(downloadButtonRef.current, {
+      y: -50,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut',
+      duration: .8,
+    });
+  }, []);
+
+  return (
+    <section className="min-h-screen w-full flex flex-col relative" id="home">
+      {/* Text Content */}
+      <div className="w-full mx-auto flex flex-col sm:mt-28 mt-24 c-space gap-3 z-10">
+        <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
+          Hi, I am Kumar Gautam <span className="waving-hand">👋</span>
+        </p>
+        <p className="hero_tag text-gray_gradient">
+          Tech Enthusiast | Full Stack Developer
+        </p>
+      </div>
+
+      {/* 3D Canvas Section */}
+      <div className="w-full h-full absolute inset-0">
+        <Canvas className="w-full h-full">
+          <Suspense fallback={<CanvasLoader />}>
+            <Leva hidden />
+            <PerspectiveCamera makeDefault position={[0, 0, 30]} />
+
+            <HeroCamera isMobile={isMobile}>
+              <HackerRoom
+                scale={sizes.deskScale}
+                position={sizes.deskPosition}
+                rotation={[0.1, -Math.PI, 0]}
+              />
+            </HeroCamera>
+
+            <group>
+              <Target position={sizes.targetPosition} />
+              <ReactLogo position={sizes.reactLogoPosition} />
+              <Rings position={sizes.ringPosition} />
+              <Cube position={sizes.cubePosition} />
+            </group>
+
+            <ambientLight intensity={1} />
+            <directionalLight position={[10, 10, 10]} intensity={0.5} />
+          </Suspense>
+        </Canvas>
+      </div>
+
+      {/* Call to Action Buttons */}
+      <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
+        <div className="flex justify-between items-center w-full flex-col sm:flex-row gap-5">
+          {/* Left Button */}
+          <a href="#about" className="w-fit">
+            <Button
+              name="Let's build something awesome"
+              isBeam
+              containerClass="sm:w-fit w-full sm:min-w-96"
+            />
+          </a>
+
+          {/* Right Download Resume Button */}
+          <a
+            href="/assets/Kumar_Gautam.pdf"
+            download="Kumar_Gautam"
+            ref={downloadButtonRef}
+            className="relative w-fit"
+          >
+            <Button
+              name="Download Resume"
+              isBeam
+              containerClass="sm:w-fit w-full sm:min-w-96 pr-10"
+            />
+            <AiOutlineDownload
+              className="absolute right-5 top-1/2 -translate-y-1/2 text-white text-xl"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
