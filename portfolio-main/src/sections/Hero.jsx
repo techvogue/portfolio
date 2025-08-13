@@ -2,7 +2,7 @@ import { PerspectiveCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import gsap from 'gsap';
 import { Leva } from 'leva';
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { AiOutlineDownload } from 'react-icons/ai';
 import { useMediaQuery } from 'react-responsive';
 
@@ -16,6 +16,7 @@ import Rings from '../components/Rings.jsx';
 import Target from '../components/Target.jsx';
 import { calculateSizes } from '../constants/index.js';
 import BlurIn from '../components/BlurIn';
+
 const Hero = () => {
   const isSmall = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -23,20 +24,18 @@ const Hero = () => {
 
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
- const downloadButtonRef = useRef();
+  const downloadButtonRef = useRef();
 
-  useEffect(() => {
-    if (!isMobile) {
-      gsap.to(downloadButtonRef.current, {
-        y: -50,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-        duration: 0.8,
-      });
+  // Click effect for download button
+  const handleDownloadClick = () => {
+    if (downloadButtonRef.current) {
+      gsap.fromTo(
+        downloadButtonRef.current,
+        { scale: 1 },
+        { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1, ease: 'power1.inOut' }
+      );
     }
-  }, [isMobile]);
-
+  };
 
   return (
     <section className="min-h-screen w-full flex flex-col relative" id="home">
@@ -46,9 +45,6 @@ const Hero = () => {
           Hi, I am Kumar Gautam <span className="waving-hand">👋</span>
         </p>
         <BlurIn>Tech Enthusiast | Full Stack Developer</BlurIn>
-        {/* <p className="hero_tag text-gray_gradient">
-          Tech Enthusiast | Full Stack Developer
-        </p> */}
       </div>
 
       {/* 3D Canvas Section */}
@@ -96,6 +92,7 @@ const Hero = () => {
             href="/assets/Kumar_Gautam.pdf"
             download="Kumar_Gautam"
             ref={downloadButtonRef}
+            onClick={handleDownloadClick}
             className="relative w-fit"
           >
             <Button
