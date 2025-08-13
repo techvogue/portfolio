@@ -23,19 +23,7 @@ const Hero = () => {
 
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
-  const downloadButtonRef = useRef();
 
-  useEffect(() => {
-    if (!isMobile) {
-      gsap.to(downloadButtonRef.current, {
-        y: -50,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-        duration: 0.8,
-      });
-    }
-  }, [isMobile]);
 
 
   return (
